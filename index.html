@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Teardown · 机器 3D 拆解模拟器合集</title>
+<style>
+  :root{
+    --bg:#0d1117; --panel:#161b22; --line:#30363d;
+    --fg:#e6edf3; --dim:#8b949e; --accent:#f0932b; --accent2:#58a6ff;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    background:var(--bg); color:var(--fg);
+    font-family:"PingFang SC","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+    min-height:100vh; display:flex; flex-direction:column; align-items:center;
+    padding:48px 24px 64px;
+  }
+  header{text-align:center;max-width:720px}
+  h1{font-size:2rem;letter-spacing:.5px}
+  h1 .n{color:var(--accent)}
+  .sub{color:var(--dim);margin-top:10px;line-height:1.7}
+  .specs{
+    display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:18px;
+  }
+  .specs span{
+    border:1px solid var(--line);border-radius:999px;padding:4px 14px;
+    font-size:.82rem;color:var(--dim);background:var(--panel);
+  }
+  main{margin-top:40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;width:100%;max-width:920px}
+  a.card{
+    display:block;background:var(--panel);border:1px solid var(--line);border-radius:12px;
+    padding:24px;text-decoration:none;color:var(--fg);transition:border-color .15s,transform .15s;
+  }
+  a.card:hover{border-color:var(--accent);transform:translateY(-2px)}
+  .card .tag{font-size:.75rem;color:var(--accent);letter-spacing:2px}
+  .card h2{font-size:1.15rem;margin:8px 0 10px}
+  .card p{font-size:.88rem;color:var(--dim);line-height:1.7}
+  footer{margin-top:48px;color:var(--dim);font-size:.8rem;text-align:center;line-height:1.8}
+  footer a{color:var(--accent2);text-decoration:none}
+  footer a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<header>
+  <h1>TEARDOWN<span class="n"> · V8</span></h1>
+  <p class="sub">机器 3D 拆解模拟器 —— 一切读数（活塞位移、气门升程、缸内压力）<br>都由同一个曲轴角函数驱动，面板数字与 3D 运动同源。</p>
+  <div class="specs">
+    <span>90° V 形夹角</span><span>5.8 L</span><span>Cross-plane 曲轴</span>
+    <span>点火 1-8-4-3-6-5-7-2</span><span>700–2400 RPM</span>
+  </div>
+</header>
+<main>
+  <a class="card" href="v8/v8-live.html">
+    <div class="tag">INTERACTIVE</div>
+    <h2>交互模拟器</h2>
+    <p>拖拽环绕、玻璃 / 剖面 / 实体三档剖切、点火顺序选缸追踪、示功图与气门正时实时联动、暂停与 ±15° 步进。离线单文件，双击即开。</p>
+  </a>
+  <a class="card" href="v8/v8-film.html">
+    <div class="tag">GUIDED FILM</div>
+    <h2>26s 配乐导览片（页面版）</h2>
+    <p>同一台机器的自动导览回放页：四个冲程、点火顺序、剖切视角一气呵成，配合成音轨。此页亦为录片源。</p>
+  </a>
+  <a class="card" href="v8/v8.mp4">
+    <div class="tag">VIDEO</div>
+    <h2>导览成片 MP4</h2>
+    <p>720p30 + 合成配乐，26 秒，响度 −14 LUFS。可直接下载或在线播放。</p>
+  </a>
+</main>
+<footer>
+  <a href="v8/v8-live.html">模拟器</a> · <a href="v8/v8-film.html">导览页</a> · <a href="v8/v8.mp4">成片</a><br>
+  构建自 <a href="https://github.com/szwnba/teardown">szwnba/teardown</a> · teardown skill
+</footer>
+</body>
+</html>
