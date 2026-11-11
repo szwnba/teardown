@@ -2,6 +2,32 @@
 
 用 [teardown skill](https://github.com/szwnba/johnson-skills)（源自 whaleyxbt/claude-motion）构建的交互式 3D 机器模拟器集合。每台机器一个目录：离线单文件 HTML（双击即开）+ 导览成片 + 审片留档。
 
+## pi4/ · 树莓派 4 Model B「开机即拆」
+
+BCM2711 · 4 GB LPDDR4-3200 · rev 1.4 · 85.6 × 56.5 mm · 6 层 PCB
+
+| 文件 | 说明 |
+|---|---|
+| `pi4/prompt.md` | **构建提示词留档**：真实数据唯一源（芯片清单 / 启动五阶段 / 电压轨）、单一数据流契约、26 s 影片脚本与验收标准 |
+| `pi4/pi4-live.html` | **交互模拟器**（814 KB，离线单文件）：拆解滑杆五档（整机/屏蔽罩/顶面/底面/全炸开）、9 组器件隔离特写、启动时钟播放/擦洗/重新开机、实体/透视/六层三档剖切、中英双语面板；无操作时自动巡演 |
+| `pi4/pi4-film.html` | 同一机器的 26 s 自动导览回放页（录片源） |
+| `pi4/pi4.mp4` | 导览成片（720p30 + 合成配乐，26 s，−14 LUFS） |
+| `pi4/review/` | 审片留档：节拍拼图、each-2 拼图、结尾帧 |
+| `pi4/qa/` | 自动化验证脚本：面板读数与 boot(t) 模型一致性（wiring）、无头逐控件冒烟（smoke）、双语标签裁切测量（measure） |
+
+一切读数（电压轨、启动相位、四核频率、结温、microSD→RAM 装载、ACT 闪烁）都由同一个 `boot(t)` 纯函数驱动 —— 面板上的数字和 3D 里的灯光不可能打架。
+
+### 重新构建 / 重新录片
+
+```bash
+# 构建（产物约 815 KB，离线可用）
+node ~/.agents/skills/teardown/sims/build.mjs pi4-live
+node ~/.agents/skills/teardown/sims/build.mjs pi4-film
+
+# 配乐（读 pi4-film/timeline.json，与影片同一时间轴）
+python3 ~/.agents/skills/teardown/run_sfx.py ~/.agents/skills/teardown/sims/pi4-shared/score.py
+```
+
 ## v8/ · Cross-plane V8 四冲程发动机
 
 90° V 形夹角 · 5.8 L · 点火顺序 1-8-4-3-6-5-7-2

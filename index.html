@@ -16,59 +16,97 @@
     min-height:100vh; display:flex; flex-direction:column; align-items:center;
     padding:48px 24px 64px;
   }
-  header{text-align:center;max-width:720px}
+  header{text-align:center;max-width:760px}
   h1{font-size:2rem;letter-spacing:.5px}
   h1 .n{color:var(--accent)}
   .sub{color:var(--dim);margin-top:10px;line-height:1.7}
-  .specs{
-    display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:18px;
-  }
+  .machine{margin-top:44px;width:100%;max-width:920px}
+  .machine .head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+  .machine .head h2{font-size:1.25rem}
+  .machine .head .chip{font-size:.78rem;color:var(--dim);border:1px solid var(--line);border-radius:999px;padding:3px 12px;background:var(--panel)}
+  .specs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
   .specs span{
     border:1px solid var(--line);border-radius:999px;padding:4px 14px;
     font-size:.82rem;color:var(--dim);background:var(--panel);
   }
-  main{margin-top:40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;width:100%;max-width:920px}
+  main{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
   a.card{
     display:block;background:var(--panel);border:1px solid var(--line);border-radius:12px;
     padding:24px;text-decoration:none;color:var(--fg);transition:border-color .15s,transform .15s;
   }
   a.card:hover{border-color:var(--accent);transform:translateY(-2px)}
   .card .tag{font-size:.75rem;color:var(--accent);letter-spacing:2px}
-  .card h2{font-size:1.15rem;margin:8px 0 10px}
+  .card h3{font-size:1.08rem;margin:8px 0 10px}
   .card p{font-size:.88rem;color:var(--dim);line-height:1.7}
-  footer{margin-top:48px;color:var(--dim);font-size:.8rem;text-align:center;line-height:1.8}
+  footer{margin-top:56px;color:var(--dim);font-size:.8rem;text-align:center;line-height:1.8}
   footer a{color:var(--accent2);text-decoration:none}
   footer a:hover{text-decoration:underline}
 </style>
 </head>
 <body>
 <header>
-  <h1>TEARDOWN<span class="n"> · V8</span></h1>
-  <p class="sub">机器 3D 拆解模拟器 —— 一切读数（活塞位移、气门升程、缸内压力）<br>都由同一个曲轴角函数驱动，面板数字与 3D 运动同源。</p>
-  <div class="specs">
-    <span>90° V 形夹角</span><span>5.8 L</span><span>Cross-plane 曲轴</span>
-    <span>点火 1-8-4-3-6-5-7-2</span><span>700–2400 RPM</span>
-  </div>
+  <h1>TEARDOWN<span class="n"> · 拆解模拟器合集</span></h1>
+  <p class="sub">真实机器的交互式 3D 拆解 —— 面板上的每一个读数都由驱动 3D 运动的同一个函数给出，<br>数字与画面不可能打架。</p>
 </header>
-<main>
-  <a class="card" href="v8/v8-live.html">
-    <div class="tag">INTERACTIVE</div>
-    <h2>交互模拟器</h2>
-    <p>拖拽环绕、玻璃 / 剖面 / 实体三档剖切、点火顺序选缸追踪、示功图与气门正时实时联动、暂停与 ±15° 步进。离线单文件，双击即开。</p>
-  </a>
-  <a class="card" href="v8/v8-film.html">
-    <div class="tag">GUIDED FILM</div>
-    <h2>26s 配乐导览片（页面版）</h2>
-    <p>同一台机器的自动导览回放页：四个冲程、点火顺序、剖切视角一气呵成，配合成音轨。此页亦为录片源。</p>
-  </a>
-  <a class="card" href="v8/v8.mp4">
-    <div class="tag">VIDEO</div>
-    <h2>导览成片 MP4</h2>
-    <p>720p30 + 合成配乐，26 秒，响度 −14 LUFS。可直接下载或在线播放。</p>
-  </a>
-</main>
+
+<section class="machine">
+  <div class="head">
+    <h2>树莓派 4 Model B · 开机即拆</h2>
+    <span class="chip">BCM2711 · 4 GB · rev 1.4</span>
+  </div>
+  <div class="specs">
+    <span>85.6 × 56.5 mm · 46 g</span><span>6 层 PCB</span><span>4× Cortex-A72 1.8 GHz</span>
+    <span>LPDDR4-3200</span><span>五阶段真实启动时序</span>
+  </div>
+  <main>
+    <a class="card" href="pi4/pi4-live.html">
+      <div class="tag">INTERACTIVE</div>
+      <h3>交互模拟器</h3>
+      <p>拖动拆解滑杆沿 Z 轴逐层炸开：屏蔽罩 → 顶面 → 底面 → 六层 PCB 展开；点器件行隔离特写；启动时钟可播放 / 擦洗 / 重新开机，电压轨、四核频率、结温、microSD→RAM 全程联动。中英双语，离线单文件。</p>
+    </a>
+    <a class="card" href="pi4/pi4-film.html">
+      <div class="tag">GUIDED FILM</div>
+      <h3>26s 配乐导览片（页面版）</h3>
+      <p>端口巡礼 → 逐层拆解 → 主控透视 → 六层叠层 → 完整启动一遍：EEPROM、start4.elf、内核入内存、USB 枚举，仪表盘全程同步。此页亦为录片源。</p>
+    </a>
+    <a class="card" href="pi4/pi4.mp4">
+      <div class="tag">VIDEO</div>
+      <h3>导览成片 MP4</h3>
+      <p>720p30 + 合成配乐，26 秒，响度 −14 LUFS。可直接下载或在线播放。</p>
+    </a>
+  </main>
+</section>
+
+<section class="machine">
+  <div class="head">
+    <h2>Cross-plane V8 四冲程发动机</h2>
+    <span class="chip">5.8 L · 点火 1-8-4-3-6-5-7-2</span>
+  </div>
+  <div class="specs">
+    <span>90° V 形夹角</span><span>Cross-plane 曲轴</span><span>700–2400 RPM</span>
+    <span>玻璃 / 剖面 / 实体剖切</span>
+  </div>
+  <main>
+    <a class="card" href="v8/v8-live.html">
+      <div class="tag">INTERACTIVE</div>
+      <h3>交互模拟器</h3>
+      <p>拖拽环绕、三档剖切、点火顺序选缸追踪、示功图与气门正时实时联动、暂停与 ±15° 步进。离线单文件，双击即开。</p>
+    </a>
+    <a class="card" href="v8/v8-film.html">
+      <div class="tag">GUIDED FILM</div>
+      <h3>26s 配乐导览片（页面版）</h3>
+      <p>同一台机器的自动导览回放页：四个冲程、点火顺序、剖切视角一气呵成，配合成音轨。</p>
+    </a>
+    <a class="card" href="v8/v8.mp4">
+      <div class="tag">VIDEO</div>
+      <h3>导览成片 MP4</h3>
+      <p>720p30 + 合成配乐，26 秒，响度 −14 LUFS。</p>
+    </a>
+  </main>
+</section>
+
 <footer>
-  <a href="v8/v8-live.html">模拟器</a> · <a href="v8/v8-film.html">导览页</a> · <a href="v8/v8.mp4">成片</a><br>
+  <a href="pi4/pi4-live.html">树莓派 4B 模拟器</a> · <a href="v8/v8-live.html">V8 模拟器</a><br>
   构建自 <a href="https://github.com/szwnba/teardown">szwnba/teardown</a> · teardown skill
 </footer>
 </body>
